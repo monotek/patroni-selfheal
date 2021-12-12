@@ -8,7 +8,7 @@ trap exit TERM INT
 while true; do
     echo "Checking Patroni health..."
 
-    if patronictl list --format=json | jq '.[] | select(.Member == "'"$(hostname)"'") | .State' | grep -q "start failed"; then
+    if curl -s localhost:8008 | jq '.state' | grep -q "start failed"; then
         echo "Patroni start failed :("
         echo "Restarting container..."
         exit 1
