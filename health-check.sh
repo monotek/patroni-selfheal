@@ -1,18 +1,21 @@
-#!/bin/bash
+#!/bin/sh
 #
-# patroni health-check
+# patroni self heal
 #
 
 trap exit TERM INT
 
 while true; do
-    echo "Checking Patroni health..."
+    echo "$(date +'%d.%m.%Y %H:%M:%S') - Checking Patroni health..."
 
-    if curl -s localhost:8008 | jq '.state' | grep -q "start failed"; then
-        curl -X DELETE "https://${KUBERNETES_SERVICE_HOST}:${KUBERNETES_PORT_443_TCP_PORT}/api/v1/namespaces/${POD_NAMESPACE}/pods/$(hostname)" -k -H "Authorization: Bearer $(cat /var/run/secrets/kubernetes.io/serviceaccount/token)"
+    if curl -s localhost:8008 | grep -q '"state": "start failed"'; then
+        echo "$(date +'%d.%m.%Y %H:%M:%S') - Patroni start failed :("
+        echo "$(date +'%d.%m.%Y %H:%M:%S') - Deleting pod..."
+        curl -k -X DELETE "https://${KUBERNETES_SERVICE_HOST}:${KUBERNETES_PORT_443_TCP_PORT}/api/v1/namespaces/${POD_NAMESPACE}/pods/${POD_NAME}" --data '{"gracePeriodSeconds":0,"propagationPolicy":"Background"}' -H "Authorization: Bearer $(cat /var/run/secrets/kubernetes.io/serviceaccount/token)" -H "Accept: application/json" -H "Content-Type: application/json"
+        exit 1
     fi
 
-    echo "Patroni health OK :)"
+    echo "$(date +'%d.%m.%Y %H:%M:%S') - Patroni health OK :)"
     sleep 15
 
 done
