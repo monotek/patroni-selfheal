@@ -1,5 +1,7 @@
-FROM registry.opensource.zalan.do/acid/spilo-13:2.1-p1
+FROM curlimages/curl:7.80.0
 
-COPY health-check.sh /health-check.sh
+COPY self-heal.sh /self-heal.sh
 
-CMD ["/bin/bash", "/health-check.sh"]
+CMD ["/bin/sh"]
+
+ENTRYPOINT ["/self-heal.sh"]
