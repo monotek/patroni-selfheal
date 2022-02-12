@@ -2,7 +2,7 @@
 
 checks patroni status and if state is "start failed" deletes the pod so it can recover onm restart
 
-The sidcar needs the following additional rbac config (serviceaccount should already exist)
+The sidecar needs the following additional rbac config (serviceaccount should already exist):
 
 ```
 apiVersion: rbac.authorization.k8s.io/v1
