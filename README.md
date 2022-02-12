@@ -1,6 +1,6 @@
 # patron self heal
 
-checks patroni status and if state is "start failed" deletes the pod so it can recover onm restart
+checks patroni status and if state is "start failed" deletes the pod so it can recover on restart.
 
 The sidecar needs the following additional rbac config (serviceaccount should already exist):
 
