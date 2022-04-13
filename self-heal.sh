@@ -16,6 +16,6 @@ while true; do
     fi
 
     echo "$(date +'%d.%m.%Y %H:%M:%S') - Patroni health OK :)"
-    sleep 15
+    sleep 60
 
 done
