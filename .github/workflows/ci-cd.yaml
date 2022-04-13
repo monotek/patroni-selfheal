@@ -24,14 +24,14 @@ jobs:
         uses: docker/login-action@v1
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}
 
       - name: Docker metadata action
         id: meta
         uses: docker/metadata-action@v3
         with:
           images: |
-            monotek/patroni-selfheal
+            staffbase/patroni-selfheal
           tags: |
             type=ref,event=tag
             type=semver,pattern=v{{version}}
