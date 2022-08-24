@@ -1,4 +1,4 @@
-# patron self heal
+# patroni self heal
 
 Checks patroni status and if state is "start failed" deletes the pod so it can recover on restart. 
 
