@@ -1,4 +1,4 @@
-FROM curlimages/curl:7.87.0
+FROM curlimages/curl:7.88.1
 
 COPY self-heal.sh /self-heal.sh
 
