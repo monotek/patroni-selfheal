@@ -2,7 +2,7 @@
 
 Checks patroni status and if state is "start failed" deletes the pod so it can recover on restart.
 
-Needed as postgres-operator does no support liveness probe.
+Needed as [postgres-operator](https://github.com/zalando/postgres-operator) does no support liveness probe.
 
 The sidecar needs the following additional rbac config (serviceaccount should already exist):
 
