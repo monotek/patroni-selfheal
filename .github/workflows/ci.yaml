@@ -35,4 +35,3 @@
           with:
             platforms: linux/amd64
             push: false
-  
