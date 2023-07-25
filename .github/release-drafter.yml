@@ -1,34 +1,34 @@
 ---
-name-template: 'v$RESOLVED_VERSION'
-tag-template: 'v$RESOLVED_VERSION'
+name-template: "v$RESOLVED_VERSION"
+tag-template: "v$RESOLVED_VERSION"
 categories:
-  - title: '🚀 Features'
+  - title: "🚀 Features"
     labels:
-      - 'feature'
-      - 'enhancement'
-  - title: '🐛 Bug Fixes'
+      - "feature"
+      - "enhancement"
+  - title: "🐛 Bug Fixes"
     labels:
-      - 'fix'
-      - 'bugfix'
-      - 'bug'
-  - title: '🧹 Maintenance'
+      - "fix"
+      - "bugfix"
+      - "bug"
+  - title: "🧹 Maintenance"
     labels:
-      - 'chore'
-      - 'dependencies'
+      - "chore"
+      - "dependencies"
 version-resolver:
   major:
     labels:
-      - 'feature'
+      - "feature"
   minor:
     labels:
-      - 'enhancement'
+      - "enhancement"
   patch:
     labels:
-      - 'fix'
-      - 'bugfix'
-      - 'bug'
-      - 'chore'
-      - 'dependencies'
+      - "fix"
+      - "bugfix"
+      - "bug"
+      - "chore"
+      - "dependencies"
   default: patch
 template: |
   ## Changes

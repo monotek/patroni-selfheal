@@ -1,37 +1,37 @@
 ---
-  name: ci
-  
-  on: 
-    pull_request:
-  
-  jobs:
-    super-linter:
-      runs-on: ubuntu-22.04
-      steps:
-        - name: Checkout Code
-          uses: actions/checkout@v3
-  
-        - name: Lint Code Base
-          uses: github/super-linter/slim@v5
-          env:
-            DEFAULT_BRANCH: main
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  
-    docker-build:
-      runs-on: ubuntu-22.04
-      steps:
-        - name: Checkout Code
-          uses: actions/checkout@v3
-  
-        - name: Set up QEMU
-          uses: docker/setup-qemu-action@v2
-  
-        - name: Set up Docker Buildx
-          uses: docker/setup-buildx-action@v2
-  
-        - name: Build
-          id: docker_build
-          uses: docker/build-push-action@v4
-          with:
-            platforms: linux/amd64
-            push: false
+name: ci
+
+on:
+  pull_request:
+
+jobs:
+  super-linter:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Lint Code Base
+        uses: github/super-linter/slim@v5
+        env:
+          DEFAULT_BRANCH: main
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  docker-build:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v2
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: Build
+        id: docker_build
+        uses: docker/build-push-action@v4
+        with:
+          platforms: linux/amd64
+          push: false
