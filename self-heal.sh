@@ -16,7 +16,7 @@ log() {
 deletepod() {
 	log "Deleting pod ${POD_NAME} in namespace ${POD_NAMESPACE}!"
 	echo "${PATRONI_STATE}" | jq
-	curl -k -X DELETE "https://${KUBERNETES_SERVICE_HOST}:${KUBERNETES_PORT_443_TCP_PORT}/api/v1/namespaces/${POD_NAMESPACE}/pods/${POD_NAME}" -H "Authorization: Bearer $(cat /var/run/secrets/kubernetes.io/serviceaccount/token)" -H "Accept: application/json" -H "Content-Type: application/json"
+	curl -k -X DELETE -s -i "https://${KUBERNETES_SERVICE_HOST}:${KUBERNETES_PORT_443_TCP_PORT}/api/v1/namespaces/${POD_NAMESPACE}/pods/${POD_NAME}" -H "Authorization: Bearer $(cat /var/run/secrets/kubernetes.io/serviceaccount/token)" -H "Accept: application/json" -H "Content-Type: application/json" | grep "HTTP/"
 	exit 1
 }
 
