@@ -1,4 +1,4 @@
-FROM curlimages/curl:8.14.1
+FROM curlimages/curl:8.15.0
 
 USER root
 # hadolint ignore=DL3018
