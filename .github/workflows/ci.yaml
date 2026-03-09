@@ -42,3 +42,20 @@ jobs:
         with:
           platforms: linux/amd64
           push: false
+
+  auto-merge:
+    permissions:
+      pull-requests: write
+      contents: write
+      workflows: write
+    runs-on: ubuntu-24.04
+    needs: docker
+    if: ${{ github.actor == 'dependabot[bot]' && github.event_name == 'pull_request' }}
+    steps:
+      - name: Auto-merge
+        run: |
+          gh pr review --approve "$PR_URL"
+          gh pr merge --auto --squash "$PR_URL"
+        env:
+          PR_URL: ${{ github.event.pull_request.html_url }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
