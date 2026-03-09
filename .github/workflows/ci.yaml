@@ -47,9 +47,8 @@ jobs:
     permissions:
       pull-requests: write
       contents: write
-      workflows: write
     runs-on: ubuntu-24.04
-    needs: docker
+    needs: docker-build
     if: ${{ github.actor == 'dependabot[bot]' && github.event_name == 'pull_request' }}
     steps:
       - name: Auto-merge
